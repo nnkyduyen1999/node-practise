@@ -1,14 +1,19 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 const port = 3000;
 var users = [
     { id: "1", name: "Duyên"},
     { id: "2", name: "Qui"}
  ];
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+
 
 app.get('/', async (req, res) => {
     res.render('index', {
@@ -32,8 +37,11 @@ app.get('/users/search', async (req, res) => {
 });
 
 app.get('/users/create', async (req, res) => {
-    res.render('./users/create', {
-        
-    })
+    res.render('./users/create');
+});
+
+app.post('/users/create', async (req, res) => {
+    res.send(req.body);
 })
+
 app.listen(port, () => console.log('Server listening on port ' + port));
