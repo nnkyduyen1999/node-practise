@@ -41,7 +41,9 @@ app.get('/users/create', async (req, res) => {
 });
 
 app.post('/users/create', async (req, res) => {
-    res.send(req.body);
+    users.push(req.body);
+    // console.log(users);
+    res.redirect('/users');
 })
 
 app.listen(port, () => console.log('Server listening on port ' + port));
