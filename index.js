@@ -2,18 +2,19 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const lowdb = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapters = new FileSync('db.json');
+db = lowdb(adapters);
+
+db.defaults({users: []}).write();
+
 app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const port = 3000;
-var users = [
-    { id: "1", name: "Duyên"},
-    { id: "2", name: "Qui"}
- ];
-
-
 
 app.get('/', async (req, res) => {
     res.render('index', {
@@ -23,7 +24,7 @@ app.get('/', async (req, res) => {
 
 app.get('/users', async (req,res) => {
     res.render('./users/index', {
-        users: users
+        users: db.get('users').value(),
     })
 });
 
@@ -41,7 +42,7 @@ app.get('/users/create', async (req, res) => {
 });
 
 app.post('/users/create', async (req, res) => {
-    users.push(req.body);
+    db.get('users').push(req.body).write();
     // console.log(users);
     res.redirect('/users');
 })
