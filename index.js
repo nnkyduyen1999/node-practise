@@ -13,6 +13,7 @@ const db = require('./db');
 const userRoutes = require('./routes/route.user');
 const port = 3000;
 
+app.use(express.static('public')); //for using static files
 
 app.get('/', async (req, res) => {
     res.render('index', {

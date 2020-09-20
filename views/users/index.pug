@@ -1,14 +1,17 @@
-h1 User list
-form(action="/users/search", method="GET")
-    input(type="text", name="q", value="searchKey") 
-    button Search
-ul
-  each user in users
-    li
-      span= user.name
-      span &nbsp;
-      a(href="/users/" + user.id) View detail
+extends ../layout/sket
 
-a(href="/users/create") Create a user
+block content
+  h1 User list
+  form(action="/users/search", method="GET")
+      input(type="text", name="q", value="searchKey") 
+      button Search
+  ul
+    each user in users
+      li
+        span= user.name
+        span &nbsp;
+        a(href="/users/" + user.id) View detail
+
+  a(href="/users/create") Create a user
 
 
