@@ -2,15 +2,18 @@ extends ../layout/sket
 
 block content
   h1 Create user
+  if errors
+    each err in errors
+      .alert.alert-danger= err
 
   form(action="/users/create", method="POST")
     .form-group
       label(for="name") Name
-      input#name.form-control(name="name", type="text", value=values ? values.name : "")
+      input#name.form-control(name="name", type="text", value=info ? info.name : "")
 
     .form-group
       label(for="phone") Phone
-      input#phone.form-control(name="phone", type="text", value=values ? values.phone : "")
+      input#phone.form-control(name="phone", type="text", value=info ? info.phone : "")
 
     .form-group
       label(for="avatar") Avatar
