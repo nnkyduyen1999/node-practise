@@ -15,6 +15,7 @@ app.set('views', './views');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const port = 3000;
+const numOfValInDb = db.get('users').size().value();
 
 app.get('/', async (req, res) => {
     res.render('index', {
@@ -27,6 +28,8 @@ app.get('/users', async (req,res) => {
         users: db.get('users').value(),
     })
 });
+
+
 
 app.get('/users/search', async (req, res) => {
     var query = req.query.q.toLowerCase();
@@ -43,9 +46,16 @@ app.get('/users/create', async (req, res) => {
 });
 
 app.post('/users/create', async (req, res) => {
+    req.body.id = numOfValInDb + 1;
     db.get('users').push(req.body).write();
-    // console.log(users);
     res.redirect('/users');
+});
+
+app.get('/users/:id', async (req,res) => {
+    const foundedUser = db.get('users').find({ id: parseInt(req.params.id)}).value();
+    res.render('./users/detail', {
+        detail: foundedUser,
+    });
 });
 
 app.listen(port, () => console.log('Server listening on port ' + port));
