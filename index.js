@@ -30,6 +30,7 @@ app.get('/users', async (req,res) => {
 
 app.get('/users/search', async (req, res) => {
     var query = req.query.q.toLowerCase();
+    const users = db.get('users').value();
     var matchedUser = users.filter(user => user.name.toLowerCase().indexOf(query) !== -1);
     res.render('./users/index', {
         searchKey: query,
@@ -45,6 +46,6 @@ app.post('/users/create', async (req, res) => {
     db.get('users').push(req.body).write();
     // console.log(users);
     res.redirect('/users');
-})
+});
 
 app.listen(port, () => console.log('Server listening on port ' + port));
