@@ -4,6 +4,9 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,8 +19,8 @@ const port = 3000;
 
 app.use(express.static('public')); //for using static files
 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
+
+
 
 const authMiddleware = require('./middlewares/auth.middleware');
 
