@@ -42,7 +42,9 @@
     },
     {
       "name": "Duyen xinh dep",
-      "id": 11
+      "id": 11,
+      "email": "dieng@gmail.com",
+      "password": "12345"
     },
     {
       "name": "ddd",
