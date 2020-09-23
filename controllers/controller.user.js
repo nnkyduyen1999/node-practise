@@ -18,6 +18,7 @@ module.exports.search = async (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
+    console.log(req.cookies);
     res.render('./users/create');
 };
 

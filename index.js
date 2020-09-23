@@ -15,6 +15,9 @@ const port = 3000;
 
 app.use(express.static('public')); //for using static files
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 app.get('/', async (req, res) => {
     res.render('index', {
         name: "AAA"
