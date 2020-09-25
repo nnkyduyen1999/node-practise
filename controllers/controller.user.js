@@ -24,6 +24,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.postCreate = async (req, res) => {
     req.body.id = numOfValInDb + 1;
+    req.body.avatar = req.file.path.split("\\").slice(1).join("/") || "";
     db.get('users').push(req.body).write();
     res.redirect('/users');
 };

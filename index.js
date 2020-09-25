@@ -15,12 +15,10 @@ const db = require('./db');
 
 const userRoutes = require('./routes/route.user');
 const authRoutes = require('./routes/route.auth');
+const productRoutes = require('./routes/route.product');
 const port = 3000;
 
 app.use(express.static('public')); //for using static files
-
-
-
 
 const authMiddleware = require('./middlewares/auth.middleware');
 
@@ -32,4 +30,6 @@ app.get('/', async (req, res) => {
 
 app.use('/users',authMiddleware.requireAuth, userRoutes);
 app.use('/auth', authRoutes);
+app.use('/products', authMiddleware.requireAuth, productRoutes);
+
 app.listen(port, () => console.log('Server listening on port ' + port));
