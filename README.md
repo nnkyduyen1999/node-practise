@@ -7,3 +7,5 @@
     .) ../ là di chiển đến thư mục mẹ của file hiện tại
     .) ./ tương tự với cd = di chiển đến thư mục khác trong cùng thư mục mẹ
     .)Khi gọi res.render() express sẽ bắt đầu tìm trong Views do đó mặc định render sẽ từ Views đi vào trong.
+
+    .) Sử dụng chrome debugger cho nodejs
