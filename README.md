@@ -9,4 +9,4 @@
     .)Khi gọi res.render() express sẽ bắt đầu tìm trong Views do đó mặc định render sẽ từ Views đi vào trong.
     .) Khi ở trạng thái nullPrototype, obj đó ko sd đc bất kỳ function hay method nào hỗ trợ cơ bản cho 1 obj trong js (toán tử ., hàm toString ...)
     .) Sử dụng chrome debugger cho nodejs
-    .) Sử dụng multer-package và encript trong html để lưu ảnh upload từ user
+    .) Sử dụng multer-package và encript trong html để lưu ảnh upload từ user, cấu hình cho đúng thư mục lưu ảnh với định dạng lại link lưu ảnh (lúc lưu về với lúc load lên khác nhao) ko là méo load đc
